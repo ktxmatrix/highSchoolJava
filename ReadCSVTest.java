@@ -29,7 +29,9 @@ public class ReadCSVTest {
   @Test
   public void testReadCommaSeparatedContent() throws Exception {
 
-      String csvFile = "/Users/sumitmadan/Downloads/test1.csv";
+      //Change this path to where you put the csv file
+      String csvFile = " /Users/sumitmadan/Downloads/test1.csv";
+
       BufferedReader br = null;
       String line = "";
       String cvsSplitBy = ",";
@@ -44,6 +46,7 @@ public class ReadCSVTest {
           br = new BufferedReader(new FileReader(csvFile));
           int count = 0;
 
+          // Extract and get rid of the header row if it exists
           if(headerRowExists)   {
               if( (line = br.readLine()) != null )  {
                   String[] header = line.split(cvsSplitBy);
@@ -52,12 +55,14 @@ public class ReadCSVTest {
 
           while ((line = br.readLine()) != null) {
 
-              // use comma as separator
+              // CSV specific - use comma as a separator
               csvData[count] = line.split(cvsSplitBy);
               count++;
 
 
           }
+
+          // Debug print of the data
           for (int i = 0; i < numRows-1; i++)   {
               for (int j = 0; j < numCols; j++) {
                   System.out.println(csvData[i][j]);
